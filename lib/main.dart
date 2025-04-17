@@ -7,6 +7,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
 }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -86,21 +90,41 @@ class _LoginPageState extends State<LoginPage> {
               height: 844, // Altura da imagem
               fit: BoxFit.cover, // Cobrir o espaço disponível
             ),
+            // Texto "Faça login na sua conta" em branco e negrito
+            Positioned(
+              top: 150, // Posição ajustável acima do widget de login
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Text(
+                  'Faça login na sua conta',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 3.0,
+                        color: Colors.black.withOpacity(0.5),
+                        offset: Offset(1, 1),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             // Div centralizada com o formulário
             Positioned(
-              bottom: 50, // Ajuste para mover a div um pouco para cima
+              bottom: 0, // Ajuste para mover a div um pouco para cima
               left: 0,
               right: 0,
               child: Container(
                 padding: EdgeInsets.all(20),
+                height: 550, // Altura da div
+                width: 390, // Largura da div
                 decoration: BoxDecoration(
                   color: Colors.white, // Fundo branco
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(
-                      20,
-                    ), // Bordas arredondadas apenas no topo
-                    topRight: Radius.circular(20),
-                  ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5), // Sombra cinza
@@ -113,6 +137,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
+                    SizedBox(height: 20),
                     TextField(
                       controller: _emailController,
                       decoration: InputDecoration(
@@ -152,7 +177,6 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _login,
-                      child: Text('Entrar'),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           horizontal: 50,
@@ -162,6 +186,7 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
+                      child: Text('Entrar'),
                     ),
                     SizedBox(height: 20), // Espaço extra na parte inferior
                   ],
